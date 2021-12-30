@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+		<title>OpenAPI We'r Service</title>
+	</head>
+	<body>
+		<div id="openapi"></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+		<script>
+			window.onload = function () {
+				window.ui = SwaggerUIBundle({
+					url: "./build.json",
+					dom_id: "#openapi",
+					deepLinking: true,
+					defaultModelExpandDepth: 0,
+					defaultModelsExpandDepth: 0,
+				})
+			}
+		</script>
+	</body>
+</html>
