@@ -1,0 +1,5879 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Moteur We'r Service",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "{protocol}://api-{client}.appwerservice.com/api/{storeId}",
+      "variables": {
+        "protocol": {
+          "default": "https",
+          "enum": [
+            "http",
+            "https"
+          ]
+        },
+        "client": {
+          "default": "demo-mojovida",
+          "enum": [
+            "demo-mojovida"
+          ]
+        },
+        "storeId": {
+          "description": "Magasin à utiliser",
+          "default": "1"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/update/me/large": {
+      "put": {
+        "tags": [
+          "Update"
+        ],
+        "summary": "UpdaterController",
+        "description": "Récupérer les dernières mises à jours pour un token",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/me_large_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Aucune donnée disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseSuccessModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productprice/product/{id}": {
+      "get": {
+        "tags": [
+          "Produits"
+        ],
+        "summary": "ProductPriceController",
+        "description": "Recuperer les prix d'un produits",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifiant",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productprice": {
+      "put": {
+        "tags": [
+          "Produits"
+        ],
+        "summary": "ProductPriceController",
+        "description": "Modifier un prix d'un produit",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/productprice_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product": {
+      "put": {
+        "tags": [
+          "Produits"
+        ],
+        "summary": "ProductsController",
+        "description": "Modifier un produit dans un magasin",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "appplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/product_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Produits"
+        ],
+        "summary": "ProductsController",
+        "description": "Ajouter un produit dans un magasin",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "appplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/product_body_1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productcontainer/all": {
+      "get": {
+        "tags": [
+          "Conteneur de produits"
+        ],
+        "summary": "ProductContainersController",
+        "description": "Récupère les conteneurs de produits (Famille, Rayon, Departement, etc...) de manière hierarchique. Le tableau children contient les enfants (famille pour rayon par exemple) du conteneur actuel",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_4"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productcontainer": {
+      "put": {
+        "tags": [
+          "Conteneur de produits"
+        ],
+        "summary": "ProductPriceController",
+        "description": "Modifie un conteneur de produit",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/productcontainer_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Conteneur de produits"
+        ],
+        "summary": "ProductPriceController",
+        "description": "Ajoute un conteneur de produit",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/productcontainer_body_1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_201"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unite/{min}/{max}": {
+      "get": {
+        "tags": [
+          "Unités"
+        ],
+        "summary": "UniteController",
+        "description": "Récupère les unités",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "min",
+            "in": "path",
+            "description": "Récupérer à partir du X résultat",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "max",
+            "in": "path",
+            "description": "Récupérer jusqu'au résultat Y",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_5"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tva/{min}/{max}": {
+      "get": {
+        "tags": [
+          "Tva"
+        ],
+        "summary": "TvaController",
+        "description": "Récupère les tvas",
+        "parameters": [
+          {
+            "name": "X-AUTH-TOKEN",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "min",
+            "in": "path",
+            "description": "Récupérer à partir du X résultat",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "max",
+            "in": "path",
+            "description": "Récupérer jusqu'au résultat Y",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_6"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseModel": {
+        "required": [
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "info": {
+            "$ref": "#/components/schemas/BaseModel_info"
+          }
+        }
+      },
+      "BaseSuccessModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseModel"
+          },
+          {
+            "required": [
+              "data"
+            ],
+            "type": "object",
+            "properties": {
+              "data": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {}
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "BaseErrorModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "info": {
+                "$ref": "#/components/schemas/BaseErrorModel_info"
+              }
+            }
+          }
+        ]
+      },
+      "AnalyticResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticResponse_data_1"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "StatProductModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductModel"
+          },
+          "date": {
+            "type": "object",
+            "nullable": true
+          },
+          "count_basket": {
+            "type": "number"
+          },
+          "ht_price": {
+            "type": "string"
+          },
+          "discount_price": {
+            "type": "string"
+          },
+          "buy_price": {
+            "type": "string"
+          },
+          "margin_price": {
+            "type": "string"
+          },
+          "sell_quantity": {
+            "type": "string"
+          },
+          "buy_quantity": {
+            "type": "string"
+          },
+          "store": {
+            "$ref": "#/components/schemas/StoreModel"
+          }
+        }
+      },
+      "AnalyticProductsModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/StatProductModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "unite": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "AnalyticProductsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticProductsModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "AnalyticProductContainerResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticProductContainerModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "AnalyticTaxResponseModel": {
+        "type": "object",
+        "properties": {
+          "sum_ht_amount": {
+            "type": "string"
+          },
+          "sum_vat_amount": {
+            "type": "string"
+          },
+          "tva_name": {
+            "type": "string"
+          },
+          "tva_value": {
+            "type": "number"
+          }
+        }
+      },
+      "AnalyticTaxesResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/AnalyticTaxesResponse_data"
+              }
+            }
+          }
+        ]
+      },
+      "UserModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/UserModel_data"
+              }
+            }
+          }
+        ]
+      },
+      "LoginModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UserModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/LoginModel_data"
+              }
+            }
+          }
+        ]
+      },
+      "BrandModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "products_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "ProductModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identifiant unique du produit"
+          },
+          "base_product": {
+            "type": "integer",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "description": "Référence unique du produit"
+          },
+          "cashdesk_reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "label_reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Nom du produit"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description du produit"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Résumé du produit"
+          },
+          "width": {
+            "type": "number",
+            "description": "Largeur du produit",
+            "nullable": true
+          },
+          "height": {
+            "type": "number",
+            "description": "Hauteur du produit",
+            "nullable": true
+          },
+          "depth": {
+            "type": "number",
+            "description": "Profondeur du produit",
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "description": "Poids du produit",
+            "nullable": true
+          },
+          "liter": {
+            "type": "number",
+            "description": "Contenance litre du produit",
+            "nullable": true
+          },
+          "origine": {
+            "type": "string",
+            "description": "Origine du produit"
+          },
+          "caliber": {
+            "type": "string",
+            "description": "(Fruit et légume) calibre du produit"
+          },
+          "label": {
+            "type": "string"
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Code à barre du produit",
+            "nullable": true
+          },
+          "code_compta": {
+            "type": "string",
+            "description": "Code comptabilité du produit",
+            "nullable": true
+          },
+          "expire_date": {
+            "type": "string",
+            "description": "Nombre de jour avant expiration du produit",
+            "nullable": true
+          },
+          "ean13": {
+            "type": "array",
+            "description": "Liste de code à barre",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "image_path": {
+            "type": "array",
+            "description": "Liste des images du produit",
+            "nullable": true,
+            "items": {
+              "type": "object"
+            }
+          },
+          "unite": {
+            "$ref": "#/components/schemas/UniteModel"
+          },
+          "other_unites": {
+            "type": "array",
+            "description": "Unités additionnel du produit",
+            "items": {
+              "$ref": "#/components/schemas/ProductOtherUniteModel"
+            }
+          },
+          "informations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductInformationsModel"
+            }
+          },
+          "is_batch": {
+            "type": "boolean",
+            "description": "Est un ensemble (Lot) de produit ?"
+          },
+          "is_pack": {
+            "type": "boolean",
+            "description": "Est un pack de produit ?"
+          },
+          "is_webstore": {
+            "type": "boolean",
+            "description": "Présent dans le site E-Commerce ?"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "is_recipe": {
+            "type": "boolean"
+          },
+          "hourly_price": {
+            "type": "number",
+            "nullable": true
+          },
+          "manufacturing_hours": {
+            "type": "number",
+            "nullable": true
+          },
+          "dlc_days_recipe": {
+            "type": "number",
+            "nullable": true
+          },
+          "manufacturing_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "taxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTaxModel"
+            }
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object"
+          },
+          "delivery_type": {
+            "type": "integer"
+          },
+          "supplies": {
+            "type": "array",
+            "description": "Stock en cours du produit",
+            "items": {
+              "$ref": "#/components/schemas/SuppliesModel"
+            }
+          },
+          "counter_nb_val": {
+            "type": "number"
+          },
+          "use_weight_cashdesk": {
+            "type": "boolean"
+          },
+          "primary_product": {
+            "type": "boolean"
+          },
+          "dlc": {
+            "type": "integer"
+          },
+          "tare": {
+            "$ref": "#/components/schemas/TareModel"
+          },
+          "use_price": {
+            "type": "boolean"
+          },
+          "compo_detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "badge": {
+            "type": "string",
+            "nullable": true
+          },
+          "label_tag": {
+            "type": "boolean"
+          },
+          "recipe_description": {
+            "type": "string"
+          },
+          "use_restaurant_ticket": {
+            "type": "boolean"
+          },
+          "container": {
+            "$ref": "#/components/schemas/ProductContainerModel"
+          },
+          "price": {
+            "description": "Prix du produit. Rechercher clients = null et client_groups = null pour le prix de base",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProductPriceModel"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "average_buy_price": {
+                    "type": "number"
+                  },
+                  "promotion": {
+                    "$ref": "#/components/schemas/PromotionModel"
+                  }
+                }
+              }
+            ]
+          },
+          "buy_price": {
+            "type": "object"
+          },
+          "allergens": {
+            "type": "string",
+            "description": "Allergène",
+            "nullable": true
+          },
+          "ingredients": {
+            "type": "string",
+            "description": "Ingédient",
+            "nullable": true
+          },
+          "brand": {
+            "$ref": "#/components/schemas/BrandModel"
+          },
+          "use_deg_price_group": {
+            "type": "boolean"
+          },
+          "is_delivery": {
+            "type": "boolean"
+          },
+          "store_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_deposit": {
+            "type": "boolean"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "batches": {
+            "type": "array",
+            "description": "Liste des lots de tracabilité",
+            "nullable": true,
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "AddInfoProductModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "integer"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "SupplierPriceModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "buy_price": {
+            "type": "number"
+          },
+          "last_prices": {
+            "type": "object"
+          },
+          "suppliers": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/SupplierModel"
+              }
+            ]
+          },
+          "products": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "stores": {
+            "type": "integer"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "isInitialized": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ProductPriceModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "ttc_price": {
+            "type": "number"
+          },
+          "deg_prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DegPricesModel"
+            }
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "tva": {
+            "$ref": "#/components/schemas/TvaModel"
+          },
+          "product_id": {
+            "type": "integer"
+          },
+          "client_group_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "client_group": {
+            "$ref": "#/components/schemas/ClientGroupModel"
+          },
+          "client_group_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "clients_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "clients_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "base_client_group": {
+            "type": "integer"
+          },
+          "product": {
+            "type": "object",
+            "nullable": true
+          },
+          "prices_batches": {
+            "type": "object"
+          }
+        }
+      },
+      "ProductBatcheModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "promotion_price": {
+            "type": "number"
+          },
+          "products": {
+            "type": "integer"
+          },
+          "linked_products": {
+            "type": "object"
+          }
+        }
+      },
+      "TareModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "AnalyticProductContainerModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProductContainerModel"
+          },
+          {
+            "$ref": "#/components/schemas/StatProductModel"
+          }
+        ]
+      },
+      "ProductContainerModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "margin": {
+            "type": "number"
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "maj_store": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          },
+          "tva": {
+            "$ref": "#/components/schemas/TvaModel"
+          },
+          "store": {
+            "type": "integer"
+          },
+          "tva_codes": {
+            "type": "object"
+          },
+          "deg_prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DegPricesModel"
+            }
+          },
+          "in_glp": {
+            "type": "boolean"
+          },
+          "children": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "object",
+              "description": "Conteneur de produit"
+            }
+          }
+        }
+      },
+      "DegPricesModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "product_container": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "discount_percent": {
+            "type": "number"
+          },
+          "client_group": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "UniteModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "description": "Type unique permettant d'identifier les unités principals -> 0 = Non special, 1 = Piece, 2 = Kilo, 3 = m, 4 = m2, 5 = m3, 6 = Litre",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "ProductOtherUniteModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "unite": {
+            "$ref": "#/components/schemas/UniteModel"
+          },
+          "value": {
+            "type": "number"
+          }
+        }
+      },
+      "ProductInformationsModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "filter_show": {
+            "type": "integer"
+          }
+        }
+      },
+      "OptionModel": {
+        "type": "object",
+        "properties": {
+          "{optionName}": {
+            "$ref": "#/components/schemas/OptionModel_optionName"
+          }
+        }
+      },
+      "CustomTaxModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "type": {
+            "type": "integer"
+          },
+          "tva": {
+            "$ref": "#/components/schemas/TvaModel"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "modification_date": {
+            "type": "object"
+          }
+        }
+      },
+      "TvaModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "code": {
+            "type": "string"
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "parameters_fec": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParametersFecModel"
+            }
+          }
+        }
+      },
+      "ParametersFecModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "tva": {
+            "type": "integer",
+            "nullable": true
+          },
+          "payment_type": {
+            "type": "integer",
+            "nullable": true
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true
+          },
+          "store": {
+            "type": "integer",
+            "nullable": true
+          },
+          "code_fic": {
+            "type": "string",
+            "nullable": true
+          },
+          "libel_sheet_fic": {
+            "type": "string",
+            "nullable": true
+          },
+          "code_sheet_fic": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SuppliesModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "current": {
+            "type": "number"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "stores_id": {
+            "type": "integer"
+          },
+          "product": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "is_pack": {
+            "type": "boolean"
+          },
+          "product_unit": {
+            "type": "object",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit_price_average": {
+            "type": "number"
+          },
+          "sub_supplies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubSupplieModel"
+            }
+          },
+          "supplies_value": {
+            "type": "number"
+          },
+          "is_valid": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MvtSupplieModel": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "number"
+          },
+          "output": {
+            "type": "number"
+          },
+          "supply_at_time": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "date": {
+            "type": "object"
+          },
+          "users": {
+            "$ref": "#/components/schemas/UserModel"
+          },
+          "sub_supply": {
+            "$ref": "#/components/schemas/SubSupplieModel"
+          },
+          "supplies_id": {
+            "type": "integer"
+          },
+          "command": {
+            "$ref": "#/components/schemas/InvoiceModel"
+          },
+          "command_suppliers": {
+            "$ref": "#/components/schemas/CommandSupplierModel"
+          },
+          "ticket": {
+            "$ref": "#/components/schemas/TicketModel"
+          },
+          "PRODUCTIONRECIPE": {
+            "$ref": "#/components/schemas/ProductionRecipeModel"
+          },
+          "production_recipe": {
+            "$ref": "#/components/schemas/ProductionRecipeModel"
+          },
+          "inventory": {
+            "$ref": "#/components/schemas/InventoryModel"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryModel"
+          },
+          "assets_command": {
+            "$ref": "#/components/schemas/AssetsCommandModel"
+          },
+          "delivery_supplier": {
+            "$ref": "#/components/schemas/DeliverySupplierModel"
+          }
+        }
+      },
+      "InventoryModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "object"
+          },
+          "positive_error": {
+            "type": "integer"
+          },
+          "negative_error": {
+            "type": "integer"
+          },
+          "is_ongoing": {
+            "type": "boolean"
+          },
+          "type": {
+            "$ref": "#/components/schemas/InventoryTypeModel"
+          }
+        }
+      },
+      "InventoryTypeModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "can_be_positive": {
+            "type": "boolean"
+          },
+          "can_be_negative": {
+            "type": "boolean"
+          },
+          "have_to_be_complete": {
+            "type": "boolean"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "ProductionRecipeModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductModel"
+          },
+          "hour_price": {
+            "type": "number"
+          },
+          "production_hour": {
+            "type": "number"
+          },
+          "offset_day_dlc": {
+            "type": "integer"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetProductionRecipeModel"
+            }
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "DetProductionRecipeModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "PRODUCTIONRECIPE": {
+            "type": "integer"
+          },
+          "production_recipe": {
+            "type": "integer"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductModel"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/UniteModel"
+          }
+        }
+      },
+      "SubSupplieModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "current": {
+            "type": "number"
+          },
+          "supply": {
+            "type": "integer"
+          }
+        }
+      },
+      "ClientModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "is_prospect": {
+            "type": "boolean"
+          },
+          "sexe": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "society": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstname": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastname": {
+            "type": "string",
+            "nullable": true
+          },
+          "social_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "usual_name_invoice": {
+            "type": "string",
+            "nullable": true
+          },
+          "birth_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_comp": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "credit_limit": {
+            "type": "number",
+            "nullable": true
+          },
+          "into_account": {
+            "type": "boolean"
+          },
+          "credit_current": {
+            "type": "number",
+            "nullable": true
+          },
+          "external_badge": {
+            "type": "string",
+            "nullable": true
+          },
+          "badge": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobile_phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "not_pub": {
+            "type": "boolean"
+          },
+          "number_of_passes": {
+            "type": "integer",
+            "nullable": true
+          },
+          "client_group_id": {
+            "$ref": "#/components/schemas/ClientGroupModel"
+          },
+          "is_pro": {
+            "type": "boolean"
+          },
+          "siret": {
+            "type": "string",
+            "nullable": true
+          },
+          "fidelity_points": {
+            "type": "integer"
+          },
+          "delivery_days": {
+            "type": "integer"
+          },
+          "link_invoice": {
+            "type": "object",
+            "nullable": true
+          },
+          "linked_invoice": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "type_statement": {
+            "type": "integer"
+          },
+          "invoice_number": {
+            "type": "integer"
+          },
+          "payment_type": {
+            "$ref": "#/components/schemas/PaymentTypeModel"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "shipping_address": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingAddressModel"
+            }
+          },
+          "payment_delay": {
+            "type": "number",
+            "nullable": true
+          },
+          "report_month": {
+            "type": "boolean"
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "image_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "image_alt": {
+            "type": "string",
+            "nullable": true
+          },
+          "truck": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/TruckModel"
+              }
+            ]
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactModel"
+            }
+          },
+          "moved": {
+            "type": "boolean"
+          },
+          "title_civility": {
+            "$ref": "#/components/schemas/TitleModel"
+          },
+          "intra_community_vat": {
+            "type": "string",
+            "nullable": true
+          },
+          "activity_sector": {
+            "type": "string",
+            "nullable": true
+          },
+          "ape_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "commentary": {
+            "type": "string",
+            "nullable": true
+          },
+          "contracts": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "$ref": "#/components/schemas/ContractModel"
+                }
+              ]
+            }
+          },
+          "is_webstore": {
+            "type": "boolean"
+          },
+          "is_validated": {
+            "type": "boolean"
+          },
+          "referenced_store": {
+            "type": "integer",
+            "nullable": true
+          },
+          "referenced_store_franchise": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "web_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "prefered_store": {
+            "$ref": "#/components/schemas/StoreModel"
+          },
+          "documents": {
+            "type": "object",
+            "nullable": true
+          },
+          "parameters_fec": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParametersFecModel"
+            }
+          }
+        }
+      },
+      "StoreModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_comp": {
+            "type": "string",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "collect_points": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectPointModel"
+            }
+          },
+          "schedule": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "image_alt": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_webstore": {
+            "type": "boolean"
+          },
+          "force_batche": {
+            "type": "boolean"
+          },
+          "days_preparation": {
+            "type": "integer",
+            "nullable": true
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "available_society_code": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "rcs": {
+            "type": "string",
+            "nullable": true
+          },
+          "rm": {
+            "type": "string",
+            "nullable": true
+          },
+          "legal_form": {
+            "type": "string",
+            "nullable": true
+          },
+          "siret": {
+            "type": "string",
+            "nullable": true
+          },
+          "stat": {
+            "$ref": "#/components/schemas/StatStoreSettingsModel"
+          },
+          "type": {
+            "type": "integer"
+          },
+          "bank_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "desk_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "rib_key": {
+            "type": "string",
+            "nullable": true
+          },
+          "domiciliation": {
+            "type": "string",
+            "nullable": true
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true
+          },
+          "bic": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionnal_info": {
+            "type": "string",
+            "nullable": true
+          },
+          "tva_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "capital": {
+            "type": "string",
+            "nullable": true
+          },
+          "ape_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "cgv": {
+            "type": "string",
+            "nullable": true
+          },
+          "calculs": {
+            "type": "integer"
+          },
+          "franchise": {
+            "type": "boolean"
+          },
+          "hide_menu": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "referenced_client": {
+            "type": "object",
+            "nullable": true
+          },
+          "referenced_supplier": {
+            "$ref": "#/components/schemas/SupplierModel"
+          },
+          "libel_sheet_fic": {
+            "type": "string",
+            "nullable": true
+          },
+          "code_sheet_fic": {
+            "type": "string",
+            "nullable": true
+          },
+          "available_as_collect_point": {
+            "type": "boolean"
+          },
+          "auto_sync_headerstore": {
+            "type": "boolean"
+          },
+          "default_delivery_product": {
+            "$ref": "#/components/schemas/ProductModel"
+          }
+        }
+      },
+      "SupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_comp": {
+            "type": "string",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "image_path": {
+            "type": "string",
+            "nullable": true
+          },
+          "free_shipping_cost": {
+            "type": "boolean"
+          },
+          "shipping_time": {
+            "type": "number",
+            "nullable": true
+          },
+          "command_day": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "approval": {
+            "type": "string",
+            "nullable": true
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactModel"
+            }
+          },
+          "store": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "payment_type": {
+            "$ref": "#/components/schemas/PaymentTypeModel"
+          },
+          "referenced_store": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "StatStoreSettingsModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "general_fees": {
+            "type": "number"
+          },
+          "taxes": {
+            "type": "number"
+          },
+          "personal_fees": {
+            "type": "number"
+          },
+          "other_fees": {
+            "type": "number"
+          },
+          "margin": {
+            "type": "number"
+          },
+          "stores": {
+            "type": "integer"
+          },
+          "previous_ca": {
+            "type": "number"
+          },
+          "objectives": {
+            "type": "object"
+          },
+          "all_objectives": {
+            "type": "object"
+          }
+        }
+      },
+      "StoreGroupModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "CollectPointModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "open_hours": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "minutes_slots": {
+            "type": "integer"
+          },
+          "max_order_by_days": {
+            "type": "integer"
+          },
+          "max_order_by_slots": {
+            "type": "integer"
+          },
+          "minimum_minutes": {
+            "type": "integer"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "store": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "ContractModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "periodicity_in_months": {
+            "type": "integer"
+          },
+          "date_start": {
+            "type": "object"
+          },
+          "duration_in_months": {
+            "type": "integer"
+          },
+          "generation_day": {
+            "type": "integer"
+          },
+          "state": {
+            "type": "integer"
+          },
+          "command": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/QuotationModel"
+              }
+            ]
+          },
+          "contract_periodicity": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContractPeriodicityModel"
+            }
+          },
+          "client": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "store": {
+            "$ref": "#/components/schemas/StoreModel"
+          }
+        }
+      },
+      "ContractPeriodicityModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "object"
+          },
+          "command": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "contract": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "CommandModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "cashdesk_reference": {
+            "type": "string"
+          },
+          "command_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "ht_net_price": {
+            "type": "number"
+          },
+          "ttc_price": {
+            "type": "number"
+          },
+          "ttc_brut_price": {
+            "type": "number",
+            "nullable": true
+          },
+          "buy_price": {
+            "type": "number"
+          },
+          "is_webstore": {
+            "type": "boolean"
+          },
+          "discount_price": {
+            "type": "boolean"
+          },
+          "supplies_modified": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "stores_id": {
+            "type": "integer"
+          },
+          "users_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "clients_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "client_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "clients": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "commandState": {
+            "$ref": "#/components/schemas/CommandStateModel"
+          },
+          "delivery_type": {
+            "type": "integer"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetCommandModel"
+            }
+          },
+          "taxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommandModel_taxes"
+            }
+          },
+          "ttc_calculated": {
+            "type": "boolean"
+          },
+          "margin_price": {
+            "type": "number",
+            "nullable": true
+          },
+          "promotions": {
+            "type": "number"
+          },
+          "return_price": {
+            "type": "number"
+          },
+          "returns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommandModel_returns"
+            }
+          },
+          "command_web": {
+            "type": "boolean"
+          },
+          "delivery_address": {
+            "$ref": "#/components/schemas/CommandModel_delivery_address"
+          },
+          "vats": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommandModel_vats"
+            }
+          },
+          "delivery_price_ht": {
+            "type": "number"
+          },
+          "delivery_price_ttc": {
+            "type": "number"
+          },
+          "is_click_and_collect": {
+            "type": "boolean"
+          },
+          "delivery_price": {
+            "$ref": "#/components/schemas/DeliveryPriceModel"
+          },
+          "delivery_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "TransferModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "linked_order": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TransferModel_linked_order"
+                }
+              },
+              "linked_delivery": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TransferModel_linked_delivery"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "OrderModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "type": "string"
+              },
+              "preparation_date": {
+                "type": "object",
+                "nullable": true
+              },
+              "delivery_date": {
+                "type": "object",
+                "nullable": true
+              },
+              "quotation_remaining_ttc": {
+                "type": "number"
+              },
+              "quotation_remaining_ht": {
+                "type": "number"
+              },
+              "quotation_remaining_discount_price": {
+                "type": "number"
+              },
+              "quotation_remaining_ht_net_price": {
+                "type": "number"
+              },
+              "quotation_remaining_ttc_brut_price": {
+                "type": "number"
+              },
+              "deliveries": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "linked_command": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OrderModel_linked_command"
+                }
+              },
+              "linked_transfers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OrderModel_linked_transfers"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "QuotationModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "type": "string"
+              },
+              "contract": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "object"
+                  }
+                ]
+              },
+              "quotation_state": {
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      },
+      "InvoiceModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommandModel"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "type": "string"
+              },
+              "payed_price": {
+                "type": "number",
+                "nullable": true
+              },
+              "ticket": {
+                "$ref": "#/components/schemas/TicketModel"
+              },
+              "is_estimate": {
+                "type": "boolean"
+              },
+              "payment_date": {
+                "type": "object"
+              },
+              "report_month": {
+                "type": "boolean"
+              },
+              "payment_days": {
+                "type": "integer",
+                "nullable": true
+              },
+              "invoice_command": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TransferModel_linked_order"
+                }
+              },
+              "linked_delivery": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceModel_linked_delivery"
+                }
+              },
+              "payed": {
+                "type": "boolean"
+              },
+              "payment_type": {
+                "$ref": "#/components/schemas/PaymentTypeModel"
+              },
+              "payments": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PaymentModel"
+                }
+              },
+              "reward": {
+                "$ref": "#/components/schemas/InvoiceModel_reward"
+              },
+              "asset_invoice_link": {
+                "type": "object",
+                "nullable": true
+              },
+              "asset_invoices": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "is_asset": {
+                "type": "boolean"
+              },
+              "is_ignored_payment": {
+                "type": "boolean"
+              },
+              "advance_invoice_type": {
+                "type": "integer"
+              },
+              "advance_invoice_percent": {
+                "type": "integer",
+                "nullable": true
+              },
+              "advance_invoice_price_ht": {
+                "type": "integer",
+                "nullable": true
+              },
+              "contract_periodicity": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ContractPeriodicityModel"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "DetDelivery": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "remain_quantity": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "products": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "delivery": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "commands": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "sub_supply": {
+            "$ref": "#/components/schemas/SubSupplieModel"
+          },
+          "batches": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "det_commands": {
+                      "type": "integer",
+                      "nullable": true
+                    },
+                    "det_delivery": {
+                      "type": "integer",
+                      "nullable": true
+                    },
+                    "batche": {
+                      "$ref": "#/components/schemas/BatcheModel"
+                    },
+                    "quantity": {
+                      "type": "number"
+                    },
+                    "id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "AssetModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "commands": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "assets_command": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "assets_type": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/AssetsType"
+              }
+            ]
+          },
+          "det_commands": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/DetCommandModel"
+              }
+            ]
+          },
+          "det_delivery": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/DetDelivery"
+              }
+            ]
+          }
+        }
+      },
+      "AssetsType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "can_update_stock": {
+            "type": "boolean"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "AssetSupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "det_command_supplier": {
+            "$ref": "#/components/schemas/DetCommandSupplierModel"
+          },
+          "command_suppliers": {
+            "$ref": "#/components/schemas/CommandSupplierModel"
+          },
+          "assets_command_supplier": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "AssetsCommandSupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "give_price": {
+            "type": "number"
+          },
+          "store": {
+            "type": "integer"
+          },
+          "supplier": {
+            "$ref": "#/components/schemas/SupplierModel"
+          },
+          "asset_supplier": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "$ref": "#/components/schemas/AssetSupplierModel"
+                }
+              ]
+            }
+          },
+          "command_supplier": {
+            "$ref": "#/components/schemas/CommandSupplierModel"
+          }
+        }
+      },
+      "AssetsCommandModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "returned": {
+            "type": "boolean"
+          },
+          "reception_date": {
+            "type": "object"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "store": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/StoreModel"
+              }
+            ]
+          },
+          "client": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/ClientModel"
+              }
+            ]
+          },
+          "invoice": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/InvoiceModel"
+              }
+            ]
+          },
+          "user": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/UserModel"
+              }
+            ]
+          },
+          "delivery": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/DeliveryModel"
+              }
+            ]
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetModel"
+            }
+          }
+        }
+      },
+      "DeliveryModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "object"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetDelivery"
+            }
+          },
+          "has_been_print": {
+            "type": "boolean"
+          },
+          "reference_making": {
+            "type": "string"
+          },
+          "reference_url": {
+            "type": "string"
+          },
+          "delivery_reference": {
+            "type": "string"
+          },
+          "delivery_name": {
+            "type": "string"
+          },
+          "delivery_society": {
+            "type": "string"
+          },
+          "estimate_delivery_date": {
+            "type": "object"
+          },
+          "delivered_date": {
+            "type": "object"
+          },
+          "delivery_type": {
+            "type": "integer",
+            "nullable": true
+          },
+          "delivery_type_livraison": {
+            "type": "integer",
+            "nullable": true
+          },
+          "truck_delivery": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/TruckDeliveryHasTruckModel"
+              }
+            ]
+          },
+          "is_confirmed": {
+            "type": "boolean"
+          },
+          "address": {
+            "$ref": "#/components/schemas/DeliveryModel_address"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_delivered": {
+            "type": "boolean"
+          },
+          "linked_invoice": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceModel_linked_delivery"
+            }
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "$ref": "#/components/schemas/AssetModel"
+                }
+              ]
+            }
+          },
+          "linked_transfers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeliveryModel_linked_transfers"
+            }
+          },
+          "commands": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  }
+                }
+              },
+              {
+                "$ref": "#/components/schemas/OrderModel"
+              }
+            ]
+          }
+        }
+      },
+      "TruckDeliveryModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "store": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "date": {
+            "type": "object"
+          },
+          "truckDeliveries": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "$ref": "#/components/schemas/TruckDeliveryHasTruckModel"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "TruckDeliveryHasTruckModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "truck": {
+            "$ref": "#/components/schemas/TruckModel"
+          },
+          "truck_delivery": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "deliveries": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "FidelityRewardModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "type": {
+            "$ref": "#/components/schemas/FidelityRewardModel_type"
+          },
+          "group_client": {
+            "$ref": "#/components/schemas/ClientGroupModel"
+          },
+          "min_points": {
+            "type": "integer"
+          },
+          "max_points": {
+            "type": "integer"
+          },
+          "date_start": {
+            "type": "object",
+            "nullable": true
+          },
+          "date_end": {
+            "type": "object",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "remove_points": {
+            "type": "integer"
+          },
+          "stores": {
+            "type": "integer"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "products": {
+            "$ref": "#/components/schemas/ProductModel"
+          }
+        }
+      },
+      "PaymentModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "number"
+          },
+          "date": {
+            "type": "object"
+          },
+          "is_canceled": {
+            "type": "boolean"
+          },
+          "date_canceled": {
+            "type": "object"
+          },
+          "message": {
+            "type": "string"
+          },
+          "commands_id": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "payment_types": {
+            "$ref": "#/components/schemas/PaymentTypeModel"
+          }
+        }
+      },
+      "TicketModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "ttc_price": {
+            "type": "number"
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "tva_price": {
+            "type": "number"
+          },
+          "ticket_number": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "client": {
+            "type": "object",
+            "nullable": true
+          },
+          "stores": {
+            "type": "object",
+            "nullable": true
+          },
+          "into_account": {
+            "type": "boolean"
+          },
+          "header_cashdesk_sheet": {
+            "type": "object"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetTicketModel"
+            }
+          },
+          "vats": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TicketModel_vats"
+            }
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TicketModel_payments"
+            }
+          },
+          "discounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TicketModel_discounts"
+            }
+          },
+          "invoice": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "DetTicketModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "ttc_price": {
+            "type": "number"
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "discount_price": {
+            "type": "number"
+          },
+          "buy_price": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "tva_price": {
+            "type": "number"
+          },
+          "ttc_unit_price": {
+            "type": "number"
+          },
+          "tva": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/TvaModel"
+              }
+            ]
+          },
+          "ticket": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "DeliveryPriceModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_click_and_collect": {
+            "type": "boolean"
+          },
+          "is_free_after_max_price": {
+            "type": "boolean"
+          },
+          "tva": {
+            "$ref": "#/components/schemas/TvaModel"
+          },
+          "grids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeliveryPriceGridModel"
+            }
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductModel"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DeliveryPriceGridModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "price_ht": {
+            "type": "number"
+          },
+          "price_ttc": {
+            "type": "number"
+          },
+          "max_price": {
+            "type": "number"
+          },
+          "tva": {
+            "type": "integer",
+            "nullable": true
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "DetCommandModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "ht_unit_price": {
+            "type": "number"
+          },
+          "ttc_unit_price": {
+            "type": "number"
+          },
+          "ht_unit_price_promotion": {
+            "type": "number"
+          },
+          "ttc_unit_price_promotion": {
+            "type": "number"
+          },
+          "tva_unit_price": {
+            "type": "number"
+          },
+          "ttc_price": {
+            "type": "number"
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "ttc_brut_price": {
+            "type": "number",
+            "nullable": true
+          },
+          "ht_brut_price": {
+            "type": "number",
+            "nullable": true
+          },
+          "tva_percent": {
+            "type": "number"
+          },
+          "buy_unit_price": {
+            "type": "number"
+          },
+          "discount_price": {
+            "type": "number"
+          },
+          "margin_price": {
+            "type": "number"
+          },
+          "margin_percent": {
+            "type": "number"
+          },
+          "sub_supply": {
+            "$ref": "#/components/schemas/SubSupplieModel"
+          },
+          "manual_promotion": {
+            "type": "number",
+            "nullable": true
+          },
+          "base": {
+            "$ref": "#/components/schemas/DetCommandModel_base"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductModel"
+          },
+          "commands_id": {
+            "type": "integer"
+          },
+          "promotion": {
+            "$ref": "#/components/schemas/PromotionModel"
+          },
+          "info": {
+            "type": "string"
+          },
+          "batches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetCommandsHasBatcheModel"
+            }
+          },
+          "assets_link": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_delivery": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DetCommandsHasBatcheModel": {
+        "type": "object",
+        "properties": {
+          "det_commands": {
+            "type": "integer",
+            "nullable": true
+          },
+          "det_delivery": {
+            "type": "integer",
+            "nullable": true
+          },
+          "batche": {
+            "$ref": "#/components/schemas/BatcheModel"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "BatcheModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "referenceSupplier": {
+            "type": "string"
+          },
+          "emplacment": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchesEmplacmentModel"
+            }
+          },
+          "date": {
+            "type": "object"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "left_quantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "noted_quantity": {
+            "type": "number",
+            "nullable": true
+          },
+          "is_recipe": {
+            "type": "boolean"
+          },
+          "products": {
+            "oneOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "detail": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "commands": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "delivery": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "stores": {
+            "type": "integer"
+          },
+          "barcode": {
+            "type": "string"
+          },
+          "barcode_text": {
+            "type": "string"
+          },
+          "commentary": {
+            "type": "string"
+          },
+          "from_glp": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DeliverySupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "object"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetDeliverySupplierModel"
+            }
+          },
+          "delivery_reference": {
+            "type": "string"
+          },
+          "commands": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "batches": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "invoice_suppliers": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "on_going": {
+            "type": "boolean"
+          },
+          "suppliers": {
+            "$ref": "#/components/schemas/SupplierModel"
+          }
+        }
+      },
+      "InvoiceSupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "object"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "deliveries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeliverySupplierModel"
+            }
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "DetDeliverySupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "base": {
+            "$ref": "#/components/schemas/DetDeliverySupplierModel_base"
+          },
+          "sub_supply": {
+            "$ref": "#/components/schemas/SubSupplieModel"
+          },
+          "products": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/ProductModel"
+              }
+            ]
+          },
+          "suppliers": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "$ref": "#/components/schemas/SupplierModel"
+              }
+            ]
+          },
+          "delivery_supplier": {
+            "type": "integer"
+          },
+          "command_suppliers": {
+            "type": "integer",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "CommandSupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "buy_price": {
+            "type": "number"
+          },
+          "ttc_price": {
+            "type": "number"
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "price_validated": {
+            "type": "boolean"
+          },
+          "supplies_modified": {
+            "type": "boolean"
+          },
+          "command_state": {
+            "$ref": "#/components/schemas/CommandSupplierStateModel"
+          },
+          "store": {
+            "type": "integer"
+          },
+          "deliveries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeliverySupplierModel"
+            }
+          },
+          "return_price": {
+            "type": "number"
+          },
+          "returns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReturnPriceSupplierModel"
+            }
+          },
+          "detail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetCommandSupplierModel"
+            }
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "suppliers": {
+            "$ref": "#/components/schemas/SupplierModel"
+          }
+        }
+      },
+      "ReturnPriceSupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "date": {
+            "type": "object"
+          },
+          "command": {
+            "type": "integer"
+          }
+        }
+      },
+      "CommandSupplierStateModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "is_needed": {
+            "type": "boolean"
+          },
+          "is_ongoing": {
+            "type": "boolean"
+          },
+          "can_update_stock": {
+            "type": "boolean"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "is_modifiable": {
+            "type": "boolean"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "DetCommandSupplierModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "base": {
+            "$ref": "#/components/schemas/DetDeliverySupplierModel_base"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "ht_unit_price": {
+            "type": "number"
+          },
+          "tva_unit_price": {
+            "type": "number"
+          },
+          "tva_percent": {
+            "type": "number"
+          },
+          "sub_supply": {
+            "$ref": "#/components/schemas/SubSupplieModel"
+          },
+          "buy_unit_price": {
+            "type": "number"
+          },
+          "possible_unit_marge": {
+            "type": "number"
+          },
+          "product": {
+            "type": "object"
+          },
+          "supplier": {
+            "$ref": "#/components/schemas/SupplierModel"
+          },
+          "command_suppliers_id": {
+            "type": "integer"
+          },
+          "batches": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "BatchesEmplacmentModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "emplacment": {
+            "$ref": "#/components/schemas/EmplacmentModel"
+          },
+          "batches_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "EmplacmentModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/EmplacmentTypeModel"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "EmplacmentTypeModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "PromotionModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "date_start": {
+            "type": "object"
+          },
+          "date_end": {
+            "type": "object"
+          },
+          "time_start": {
+            "type": "object",
+            "nullable": true
+          },
+          "time_end": {
+            "type": "object",
+            "nullable": true
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "values": {
+            "type": "number"
+          },
+          "promotion_type": {
+            "type": "integer"
+          },
+          "clients": {
+            "type": "object",
+            "nullable": true
+          },
+          "client_groups": {
+            "$ref": "#/components/schemas/ClientGroupModel"
+          },
+          "days_active": {
+            "$ref": "#/components/schemas/PromotionModel_days_active"
+          },
+          "max_use": {
+            "type": "integer"
+          },
+          "max_amount": {
+            "type": "number"
+          },
+          "available_ecommerce": {
+            "type": "boolean"
+          },
+          "only_coupon": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "link": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object"
+                },
+                {
+                  "$ref": "#/components/schemas/ProductContainerModel"
+                }
+              ]
+            }
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "CommandStateModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "is_needed": {
+            "type": "boolean"
+          },
+          "is_ongoing": {
+            "type": "boolean"
+          },
+          "can_update_stock": {
+            "type": "boolean"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "integer"
+          },
+          "is_modifiable": {
+            "type": "boolean"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "TitleModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ContactModel": {
+        "type": "object",
+        "properties": {
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "address_comp": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "function_role": {
+            "type": "string"
+          },
+          "on_document": {
+            "type": "boolean"
+          },
+          "commentary": {
+            "type": "string"
+          }
+        }
+      },
+      "ClientGroupModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price_type": {
+            "type": "integer"
+          },
+          "is_price_group": {
+            "type": "boolean"
+          },
+          "use_ttc": {
+            "type": "boolean"
+          },
+          "parent": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "percent_reduction": {
+            "type": "number"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "custom_tax": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTaxModel"
+            }
+          }
+        }
+      },
+      "PaymentTypeModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer"
+          },
+          "special_type": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "mini": {
+            "type": "number",
+            "nullable": true
+          },
+          "maxi": {
+            "type": "number",
+            "nullable": true
+          },
+          "abbreviation": {
+            "type": "string"
+          },
+          "cash_drawer": {
+            "type": "boolean"
+          },
+          "return": {
+            "type": "boolean"
+          },
+          "cb_axis": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "parameters_fec": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParametersFecModel"
+            }
+          }
+        }
+      },
+      "ShippingAddressModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "address": {
+            "type": "string"
+          },
+          "address_comp": {
+            "type": "string"
+          },
+          "postal_code": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "info": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "clients": {
+            "type": "integer"
+          }
+        }
+      },
+      "TruckModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          },
+          "clients": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "ArticleAddInfoModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ArticlesHasAddInfoModel": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "info_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "article_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "ArticleModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "save_data": {
+            "type": "string"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ArticleModel_image"
+          },
+          "has_data": {
+            "type": "boolean"
+          },
+          "is_published": {
+            "type": "boolean"
+          },
+          "publicatation_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "modification_date": {
+            "type": "object",
+            "nullable": true
+          },
+          "article_type": {
+            "$ref": "#/components/schemas/ArticleModel_article_type"
+          },
+          "info": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArticlesHasAddInfoModel"
+            }
+          },
+          "canonical_title": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identifiant a renvoyé après avoir traiter la donnée mise à jours"
+          },
+          "date": {
+            "type": "object",
+            "description": "Date de la mise à jours de la donnée"
+          },
+          "type": {
+            "type": "string",
+            "description": "insert en cas d'ajout, update en cas de mise à jours, delete en cas de suppression ou désactivation",
+            "enum": [
+              "insert",
+              "update",
+              "delete"
+            ]
+          },
+          "entity": {
+            "type": "object",
+            "description": "Contient la donnée en JSON suivant le champs 'name', voir le schema plus bas du type de données",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProductModel"
+              },
+              {
+                "$ref": "#/components/schemas/ClientModel"
+              },
+              {
+                "$ref": "#/components/schemas/ProductPriceModel"
+              },
+              {
+                "$ref": "#/components/schemas/TicketModel"
+              }
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Type de donnée",
+            "enum": [
+              "Products",
+              "Clients",
+              "ProductPrice"
+            ]
+          },
+          "entity_id": {
+            "type": "integer",
+            "description": "Identifiant unique de la donnée"
+          }
+        }
+      },
+      "me_large_body": {
+        "type": "object",
+        "properties": {
+          "previous_ids": {
+            "type": "array",
+            "description": "Listes des identifiants de UpdateModel traité par l'application externe.",
+            "example": [
+              1142,
+              1143,
+              1144
+            ],
+            "items": {
+              "type": "integer"
+            }
+          },
+          "length": {
+            "type": "integer",
+            "description": "Nombre de mise à jours à récupérer",
+            "example": 50
+          }
+        }
+      },
+      "inline_response_200": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "inline_response_200_1": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPriceModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "productprice_deg_prices": {
+        "required": [
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "number"
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "ttc_price": {
+            "type": "number"
+          }
+        }
+      },
+      "productprice_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identifiant du prix"
+          },
+          "ht_price": {
+            "type": "number",
+            "description": "Prix HT"
+          },
+          "ttc_price": {
+            "type": "number",
+            "description": "Prix TTC"
+          },
+          "tva_id": {
+            "type": "integer",
+            "description": "Identifiant de la tva"
+          },
+          "clients_id": {
+            "type": "integer",
+            "description": "Modifier le client associé au prix"
+          },
+          "client_group_id": {
+            "type": "integer",
+            "description": "Modifier le groupe de client associé au prix"
+          },
+          "deg_prices": {
+            "type": "array",
+            "description": "Prix dégressif",
+            "items": {
+              "$ref": "#/components/schemas/productprice_deg_prices"
+            }
+          }
+        }
+      },
+      "inline_response_200_2": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/ProductPriceModel"
+              }
+            }
+          }
+        ]
+      },
+      "product_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Identifiant du produit a modifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nom du produit"
+          },
+          "unites_id": {
+            "type": "integer",
+            "description": "Identifiant d'une unité"
+          },
+          "tva": {
+            "type": "integer",
+            "description": "Identifiant d'une tva"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description longue"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Description courte"
+          },
+          "origine": {
+            "type": "string"
+          },
+          "caliber": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Code barre principal (Dans le cadre de FE, c'est ce code barre qui est utilisé). Mettre 2[0-9]XXXXX00000C pour les codes à barres poids prix"
+          },
+          "ean13": {
+            "type": "array",
+            "description": "Tableau de code à barre additionnel",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cashdesk_reference": {
+            "type": "string",
+            "description": "Référence utilisable librement"
+          },
+          "label_reference": {
+            "type": "string",
+            "description": "Référence utilisable librement"
+          },
+          "in_webstore": {
+            "type": "string",
+            "description": "Disponible E-Commerce ?"
+          },
+          "use_weight_cashdesk": {
+            "type": "string",
+            "description": "A besoin d'être pesée ? (L'unité doit être kilo, voir documentation unité)"
+          },
+          "primary_product": {
+            "type": "string",
+            "description": "Est une matière première ?"
+          },
+          "use_restaurant_ticket": {
+            "type": "string",
+            "description": "Eligible Ticket restaurant ?"
+          },
+          "allergens": {
+            "type": "string",
+            "description": "Allergenes"
+          },
+          "ingredients": {
+            "type": "string",
+            "description": "Ingredients"
+          },
+          "is_delivery": {
+            "type": "string",
+            "description": "Est une livraison ?"
+          },
+          "is_deposit": {
+            "type": "string",
+            "description": "Est un article de consigne ? (Plateau de traiteur, bouteille, etc...)"
+          },
+          "has_alcohol": {
+            "type": "string",
+            "description": "[WEB] A de l'alcool"
+          },
+          "code_compta": {
+            "type": "string",
+            "description": "Code comptabilité"
+          },
+          "tare": {
+            "type": "integer",
+            "description": "Tare en gramme"
+          }
+        }
+      },
+      "inline_response_200_3": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/ProductModel"
+              }
+            }
+          }
+        ]
+      },
+      "product_stock": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "number",
+            "description": "Stock courant"
+          },
+          "min": {
+            "type": "number",
+            "description": "Stock min"
+          },
+          "max": {
+            "type": "number",
+            "description": "Stock max"
+          }
+        },
+        "description": "Stock de création du produit"
+      },
+      "product_body_1": {
+        "required": [
+          "ht_price",
+          "name",
+          "reference",
+          "stock",
+          "ttc_price",
+          "tva",
+          "unites_id"
+        ],
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "Référence du produit, uniquement sous forme numérique"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nom du produit"
+          },
+          "unites_id": {
+            "type": "integer",
+            "description": "Identifiant d'une unité"
+          },
+          "tva": {
+            "type": "integer",
+            "description": "Identifiant d'une tva"
+          },
+          "ht_price": {
+            "type": "number",
+            "description": "Prix HT (Doit être présent si ttc_price n'est pas présent)"
+          },
+          "ttc_price": {
+            "type": "number",
+            "description": "Prix TTC (Doit être présent si ht_price n'est pas présent)"
+          },
+          "stock": {
+            "$ref": "#/components/schemas/product_stock"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description longue"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Description courte"
+          },
+          "origine": {
+            "type": "string"
+          },
+          "caliber": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "barcode": {
+            "type": "string",
+            "description": "Code barre principal (Dans le cadre de FE, c'est ce code barre qui est utilisé). Mettre 2[0-9]XXXXX00000C pour les codes à barres poids prix"
+          },
+          "ean13": {
+            "type": "array",
+            "description": "Tableau de code à barre additionnel",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cashdesk_reference": {
+            "type": "string",
+            "description": "Référence utilisable librement"
+          },
+          "label_reference": {
+            "type": "string",
+            "description": "Référence utilisable librement"
+          },
+          "in_webstore": {
+            "type": "string",
+            "description": "Disponible E-Commerce ?"
+          },
+          "use_weight_cashdesk": {
+            "type": "string",
+            "description": "A besoin d'être pesée ? (L'unité doit être kilo, voir documentation unité)"
+          },
+          "primary_product": {
+            "type": "string",
+            "description": "Est une matière première ?"
+          },
+          "use_restaurant_ticket": {
+            "type": "string",
+            "description": "Eligible Ticket restaurant ?"
+          },
+          "allergens": {
+            "type": "string",
+            "description": "Allergenes"
+          },
+          "ingredients": {
+            "type": "string",
+            "description": "Ingredients"
+          },
+          "is_delivery": {
+            "type": "string",
+            "description": "Est une livraison ?"
+          },
+          "is_deposit": {
+            "type": "string",
+            "description": "Est un article de consigne ? (Plateau de traiteur, bouteille, etc...)"
+          },
+          "has_alcohol": {
+            "type": "string",
+            "description": "[WEB] A de l'alcool"
+          },
+          "code_compta": {
+            "type": "string",
+            "description": "Code comptabilité"
+          },
+          "tare": {
+            "type": "integer",
+            "description": "Tare en gramme"
+          },
+          "container_id": {
+            "type": "integer",
+            "description": "Identifiant du conteneur de produit (Famille) du produit"
+          }
+        }
+      },
+      "inline_response_200_4": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductContainerModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "productcontainer_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "margin": {
+            "type": "number",
+            "description": "Marge en coefficiant (1.5 par exemple)"
+          },
+          "parent_id": {
+            "type": "integer",
+            "description": "Identifiant de conteneur de produit pour définir le parent"
+          }
+        }
+      },
+      "inline_response_201": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/ProductContainerModel"
+              }
+            }
+          }
+        ]
+      },
+      "productcontainer_body_1": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "margin": {
+            "type": "number",
+            "description": "Marge en coefficiant (1.5 par exemple)"
+          },
+          "parent_id": {
+            "type": "integer",
+            "description": "Identifiant de conteneur de produit pour définir le parent"
+          }
+        }
+      },
+      "inline_response_200_5": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UniteModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "inline_response_200_6": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSuccessModel"
+          },
+          {
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TvaModel"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "BaseModel_info": {
+        "required": [
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Type de code de status",
+            "enum": [
+              "success",
+              "bad_id",
+              "not_found",
+              "access_denied",
+              "bad_parameter",
+              "critical_error",
+              "not_activated",
+              "already_exist",
+              "already_done",
+              "logic_error",
+              "forbidden",
+              "not_implemented"
+            ]
+          }
+        }
+      },
+      "BaseErrorModel_info": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "AnalyticResponse_data": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "string"
+          },
+          "y": {
+            "type": "number"
+          }
+        }
+      },
+      "AnalyticResponse_data_1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticResponse_data"
+            }
+          }
+        }
+      },
+      "AnalyticTaxesResponse_data": {
+        "type": "object",
+        "properties": {
+          "vat_b2b": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticTaxResponseModel"
+            }
+          },
+          "vat_b2c": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticTaxResponseModel"
+            }
+          },
+          "vat_tickets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticTaxResponseModel"
+            }
+          }
+        }
+      },
+      "UserModel_data": {
+        "type": "object",
+        "properties": {
+          "creationDate": {
+            "type": "object"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "in_update": {
+            "type": "boolean",
+            "default": false
+          },
+          "isSuperAdmin": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          },
+          "lastKnownIp": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "modificationDate": {
+            "type": "object"
+          },
+          "token": {
+            "type": "string"
+          },
+          "tokenDate": {
+            "type": "object",
+            "description": "Date d'expiration du token"
+          }
+        }
+      },
+      "LoginModel_data": {
+        "properties": {
+          "token": {
+            "$ref": "#/components/parameters/X-AUTH-TOKEN"
+          }
+        }
+      },
+      "OptionModel_optionName": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "schema": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CommandModel_taxes": {
+        "type": "object",
+        "properties": {
+          "price_ht": {
+            "type": "number"
+          },
+          "price_ttc": {
+            "type": "number"
+          },
+          "commands_id": {
+            "type": "integer"
+          },
+          "custom_tax": {
+            "type": "string"
+          }
+        }
+      },
+      "CommandModel_returns": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "date": {
+            "type": "object"
+          },
+          "command": {
+            "type": "integer"
+          }
+        }
+      },
+      "CommandModel_delivery_address": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_comp": {
+            "type": "string",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CommandModel_vats": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "vat": {
+            "$ref": "#/components/schemas/TvaModel"
+          }
+        }
+      },
+      "TransferModel_linked_order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "object"
+          },
+          "ttc_price": {
+            "type": "number"
+          }
+        }
+      },
+      "TransferModel_linked_delivery": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "date": {
+            "type": "object"
+          },
+          "is_delivered": {
+            "type": "boolean"
+          },
+          "reference_making": {
+            "type": "string"
+          }
+        }
+      },
+      "OrderModel_linked_command": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "ttc_price": {
+            "type": "number"
+          },
+          "ht_price": {
+            "type": "number"
+          },
+          "advance_invoice_type": {
+            "type": "integer"
+          },
+          "creation_date": {
+            "type": "object"
+          }
+        }
+      },
+      "OrderModel_linked_transfers": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "object"
+          }
+        }
+      },
+      "InvoiceModel_linked_delivery": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          }
+        }
+      },
+      "InvoiceModel_reward": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "reward": {
+            "$ref": "#/components/schemas/FidelityRewardModel"
+          },
+          "client": {
+            "type": "object"
+          },
+          "commands": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "object"
+          }
+        },
+        "nullable": true
+      },
+      "DeliveryModel_address": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "address_comp": {
+            "type": "string",
+            "nullable": true
+          },
+          "postal_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "DeliveryModel_linked_transfers": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "creation_date": {
+            "type": "object"
+          }
+        }
+      },
+      "FidelityRewardModel_type": {
+        "type": "object",
+        "properties": {
+          "int_val": {
+            "type": "integer"
+          },
+          "code_val": {
+            "type": "string"
+          }
+        }
+      },
+      "TicketModel_vats": {
+        "type": "object",
+        "properties": {
+          "tva_price": {
+            "type": "number"
+          },
+          "tva": {
+            "$ref": "#/components/schemas/TvaModel"
+          },
+          "ticket": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "TicketModel_payments": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "number"
+          },
+          "payment_type": {
+            "$ref": "#/components/schemas/PaymentTypeModel"
+          },
+          "ticket": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "TicketModel_discounts": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number"
+          },
+          "label": {
+            "type": "string"
+          },
+          "ticket": {
+            "oneOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "DetCommandModel_base": {
+        "type": "object",
+        "properties": {
+          "unite": {
+            "$ref": "#/components/schemas/UniteModel"
+          },
+          "quantity": {
+            "type": "number"
+          }
+        }
+      },
+      "DetDeliverySupplierModel_base": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "number"
+          },
+          "unite": {
+            "$ref": "#/components/schemas/UniteModel"
+          }
+        }
+      },
+      "PromotionModel_days_active": {
+        "type": "object",
+        "properties": {
+          "mon": {
+            "type": "boolean"
+          },
+          "tue": {
+            "type": "boolean"
+          },
+          "wed": {
+            "type": "boolean"
+          },
+          "thu": {
+            "type": "boolean"
+          },
+          "fri": {
+            "type": "boolean"
+          },
+          "sat": {
+            "type": "boolean"
+          },
+          "sun": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ArticleModel_image": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "alt": {
+            "type": "string"
+          }
+        }
+      },
+      "ArticleModel_article_type": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "nullable": true
+      }
+    },
+    "parameters": {
+      "X-AUTH-TOKEN": {
+        "name": "X-AUTH-TOKEN",
+        "in": "header",
+        "description": "Token d'authentification",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "min": {
+        "name": "min",
+        "in": "path",
+        "description": "Récupérer à partir du X résultat",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "max": {
+        "name": "max",
+        "in": "path",
+        "description": "Récupérer jusqu'au résultat Y",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "id": {
+        "name": "id",
+        "in": "path",
+        "description": "Identifiant",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "dateMin": {
+        "name": "dateMin",
+        "in": "path",
+        "description": "Date minimum (format Ymd)",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "dateMax": {
+        "name": "dateMax",
+        "in": "path",
+        "description": "Date maximum (format Ymd)",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "format": {
+        "name": "format",
+        "in": "path",
+        "description": "Format du retour des données d'analyse (format YYYYMM)",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        },
+        "examples": {
+          "YYYYMM": {
+            "summary": "Mois",
+            "value": "YYYYMM"
+          },
+          "YYYY": {
+            "summary": "Année",
+            "value": "YYYY"
+          },
+          "YYYYMMDD": {
+            "summary": "Jour",
+            "value": "YYYYMMDD"
+          },
+          "YYYYMMDDHH": {
+            "summary": "Temps",
+            "value": "YYYYMMDDHH"
+          }
+        }
+      },
+      "client": {
+        "name": "client",
+        "in": "path",
+        "description": "Identifiant du client",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "catalogStore": {
+        "name": "catalogStore",
+        "in": "path",
+        "description": "Identifiant du catalogue de produits (0 pour tous les groupes)",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "articlesType": {
+        "name": "type",
+        "in": "path",
+        "description": "Type d'articles",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
